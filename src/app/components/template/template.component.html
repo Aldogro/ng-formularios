@@ -76,25 +76,15 @@
     <label for="sexo" class="col-2 col-form-label">Sexo</label>
     <div class="col-md-8">
       
-      <div class="custom-control custom-radio">
+      <div *ngFor="let s of sexos" class="custom-control custom-radio">
         <input
             [(ngModel)]="usuario.sexo"
             type="radio"
-            id="femenino"
-            value="Femenino"
+            [id]="s"
+            [value]="s"
             name="radio"
             class="custom-control-input">
-        <label class="custom-control-label" for="femenino">Femenino</label>
-      </div>
-      <div class="custom-control custom-radio">
-        <input
-        [(ngModel)]="usuario.sexo"
-            type="radio"
-            id="masculino"
-            value="Masculino"
-            name="radio"
-            class="custom-control-input">
-        <label class="custom-control-label" for="masculino">Masculino</label>
+        <label class="custom-control-label" [for]="s">{{ s }}</label>
       </div>
 
     </div>
@@ -110,3 +100,7 @@
   </div>
 
 </form>
+
+<pre>
+  {{ usuario | json }}
+</pre>
