@@ -14,7 +14,8 @@ export class TemplateComponent {
     apellido: 'Rojas',
     email: 'aldogrojas5@gmail.com',
     pais: 'ARG',
-    sexo: 'Masculino'
+    sexo: 'Masculino',
+    acepta: false
   };
 
   paises = [
