@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { APP_ROUTING } from './app.routes';
@@ -22,7 +22,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    APP_ROUTING
+    APP_ROUTING,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,12 +12,12 @@
                type="text"
                placeholder="Nombre"
                name="nombre"
-               [ngModel]="usuario.nombre"
+               [(ngModel)]="usuario['nombre']"
                required
                minlength="4"
                #nombre="ngModel">
-        <div class="alert alert-danger mt-1" role="alert" *ngIf="nombre.errors?.required && nombre.touched">El campo es requerido</div>
-        <div class="alert alert-danger mt-1" role="alert" *ngIf="nombre.errors?.minlength">Te falta/n {{ nombre.errors.minlength.requiredLength - nombre.errors.minlength.actualLength }} caracter/es</div>
+        <div class="alert alert-danger mt-1" role="alert" *ngIf="nombre['errors']?.required && nombre.touched">El campo es requerido</div>
+        <div class="alert alert-danger mt-1" role="alert" *ngIf="nombre['errors']?.minlength">Te falta/n {{ nombre['errors'].minlength.requiredLength - nombre['errors'].minlength.actualLength }} caracter/es</div>
       </div>
     </div>
 
@@ -29,12 +29,12 @@
                type="text"
                placeholder="Apellido"
                name="apellido"
-               [ngModel]="usuario.apellido"
+               [ngModel]="usuario['apellido']"
                required
                minlength="4"
                #apellido="ngModel">
-               <div class="alert alert-danger mt-1" role="alert" *ngIf="apellido.errors?.required && apellido.touched">El campo es requerido</div>
-               <div class="alert alert-danger mt-1" role="alert" *ngIf="apellido.errors?.minlength">Te falta/n {{ apellido.errors.minlength.requiredLength - apellido.errors.minlength.actualLength }} caracter/es</div>
+               <div class="alert alert-danger mt-1" role="alert" *ngIf="apellido['errors']?.required && apellido.touched">El campo es requerido</div>
+               <div class="alert alert-danger mt-1" role="alert" *ngIf="apellido['errors']?.minlength">Te falta/n {{ apellido['errors'].minlength.requiredLength - apellido['errors'].minlength.actualLength }} caracter/es</div>
       </div>
     </div>
 
@@ -48,12 +48,12 @@
              type="email"
              placeholder="Correo electrónico"
              name="email"
-             [ngModel]="usuario.email"
+             [ngModel]="usuario['email']"
              required
              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
              #email="ngModel">
-             <div class="alert alert-danger mt-1" role="alert" *ngIf="email.errors?.required && email.touched">El campo es requerido</div>
-             <div class="alert alert-danger mt-1" role="alert" *ngIf="email.errors?.pattern">El email ingresado tiene un formato inválido</div>
+             <div class="alert alert-danger mt-1" role="alert" *ngIf="email['errors']?.required && email.touched">El campo es requerido</div>
+             <div class="alert alert-danger mt-1" role="alert" *ngIf="email['errors']?.pattern">El email ingresado tiene un formato inválido</div>
     </div>
   </div>
 
@@ -61,7 +61,7 @@
     <label for="pais" class="col-2 col-form-label">País</label>
     <div class="col-md-8">
       <select
-            [(ngModel)]="usuario.pais"
+            [(ngModel)]="usuario['pais']"
             class="form-control"
             name="pais"
             id="pais"
@@ -78,7 +78,7 @@
         
         <div *ngFor="let s of sexos" class="custom-control custom-radio">
           <input
-              [(ngModel)]="usuario.sexo"
+              [(ngModel)]="usuario['sexo']"
               type="radio"
               [id]="s"
               [value]="s"
@@ -96,11 +96,11 @@
       
       <div class="form-check">
         <input
-            [(ngModel)]="usuario.acepta"
+            [(ngModel)]="usuario['acepta']"
             class="form-check-input"
             type="checkbox"
             name="acepta"
-            [value]="usuario.acepta"
+            [value]="usuario['acepta']"
             id="acepta"
             required>
         <label class="form-check-label" for="acepta">
