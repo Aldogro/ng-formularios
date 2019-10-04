@@ -3,37 +3,55 @@
 <form [formGroup]="forma" (ngSubmit)="guardarCambios()" novalidate="novalidate">
 
   <div formGroupName="nombrecompleto">
-    <div class="form-group row">
+
+    <div 
+      class="form-group row"
+      [ngClass]="{
+        'has-error': forma.get('nombrecompleto.nombre').hasError('minlength') || forma.get('nombrecompleto.nombre').hasError('required'),
+        'has-success': forma.get('nombrecompleto.nombre').valid
+      }">
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
         <input class="form-control"
                type="text"
                placeholder="Nombre"
                formControlName="nombre">
-        <div class="form-control-feedback">El nombre es requerido</div>
-        <div class="form-control-feedback">La cantidad mínima de caracteres es de 3</div>
+        <div *ngIf="forma.get('nombrecompleto.nombre').hasError('required')" class="form-control-feedback">El nombre es requerido</div>
+        <div *ngIf="forma.get('nombrecompleto.nombre').hasError('minlength')" class="form-control-feedback">La cantidad mínima de caracteres es de 3</div>
       </div>
     </div>
 
-    <div class="form-group row">
+    <div 
+      class="form-group row"
+      [ngClass]="{
+        'has-error': forma.get('nombrecompleto.apellido').hasError('minlength') || forma.get('nombrecompleto.apellido').hasError('required'),
+        'has-success': forma.get('nombrecompleto.apellido').valid
+      }">
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
         <input class="form-control"
                type="text"
                placeholder="Apellido"
                formControlName="apellido">
+        <div *ngIf="forma.get('nombrecompleto.apellido').hasError('required')" class="form-control-feedback">El apellido es requerido</div>
+        <div *ngIf="forma.get('nombrecompleto.apellido').hasError('minlength')" class="form-control-feedback">El apellido debe tener al menos 3 caracteres</div>
       </div>
     </div>
   </div>
 
-  <div class="form-group row">
+  <div
+    class="form-group row"
+    [ngClass]="{
+      'has-error': forma.get('email').hasError('required') || forma.get('email').hasError('pattern'),
+      'has-success': forma.get('email').valid}">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-md-8">
       <input class="form-control"
              type="email"
              placeholder="Correo electrónico"
              formControlName="email">
-             <div *ngIf="true" class="form-control-feedback">El email no es válido</div>
+             <div *ngIf="forma.get('email').hasError('required')" class="form-control-feedback">El email es requerido</div>
+             <div *ngIf="forma.get('email').hasError('pattern')" class="form-control-feedback">El email no es válido</div>
     </div>
   </div>
 
@@ -49,3 +67,4 @@
 </form>
 
 {{ forma.valid }}
+{{ forma.get('nombrecompleto.nombre').valid }}
