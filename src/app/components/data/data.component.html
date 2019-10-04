@@ -10,8 +10,8 @@
                type="text"
                placeholder="Nombre"
                formControlName="nombre">
-        <div *ngIf="forma.controls['nombre'].errors?.required" class="form-control-feedback">El nombre es requerido</div>
-        <div *ngIf="forma.controls['nombre']['errors']?.minlength.requiredLength" class="form-control-feedback">La cantidad mínima de caracteres es de {{ forma.controls.nombre.errors.minlength.requiredLength }}</div>
+        <div class="form-control-feedback">El nombre es requerido</div>
+        <div class="form-control-feedback">La cantidad mínima de caracteres es de 3</div>
       </div>
     </div>
 
@@ -33,13 +33,14 @@
              type="email"
              placeholder="Correo electrónico"
              formControlName="email">
+             <div *ngIf="true" class="form-control-feedback">El email no es válido</div>
     </div>
   </div>
 
-  <div class="form-group row is-invalid">
+  <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col-md-8">
-      <button type="submit" class="btn btn-outline-primary" [disabled]="!forma.valid" [ngClass]="{'disabled': !forma.valid}">
+      <button type="submit" class="btn btn-outline-primary" [ngClass]="{'disabled': !forma.valid}">
         Guardar
       </button>
     </div>

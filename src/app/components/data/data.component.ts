@@ -22,14 +22,16 @@ export class DataComponent {
     console.log(this.usuario);
 
     this.forma = new FormGroup({
-      nombre: new FormControl('', [
-                                    Validators.required,
-                                    Validators.minLength(3)
-                                  ]/*, reglas de validacion asíncrona */),
-      apellido: new FormControl('Rojas', [
-                                          Validators.required,
-                                          Validators.minLength(3)
-                                        ]),
+      nombrecompleto: new FormGroup ({
+        nombre: new FormControl('Aldo', [
+                                      Validators.required,
+                                      Validators.minLength(3)
+                                    ]/*, reglas de validacion asíncrona */),
+        apellido: new FormControl('Rojas', [
+                                            Validators.required,
+                                            Validators.minLength(3)
+                                          ])
+      }),
       email: new FormControl('aldo.rojas@ecloudsolutions.com',
                               [
                                 Validators.required,
@@ -39,8 +41,7 @@ export class DataComponent {
   }
 
   guardarCambios() {
-    console.log(this.forma.value);
-    console.log(this.forma);
+    console.log(this.forma.controls.email);
   }
 
 }
