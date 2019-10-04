@@ -114,7 +114,7 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col-md-8">
-      <button type="submit" class="btn btn-outline-primary" [ngClass]="{'disabled' : !forma.valid}">
+      <button type="submit" class="btn btn-outline-primary" [disabled]="!forma.valid" [ngClass]="{'disabled' : !forma.valid}">
         Guardar
       </button>
     </div>
