@@ -7,7 +7,7 @@
     <div 
       class="form-group row"
       [ngClass]="{
-        'has-error': forma.get('nombrecompleto.nombre').hasError('minlength') || forma.get('nombrecompleto.nombre').hasError('required'),
+        'has-error': forma.get('nombrecompleto.nombre').touched && (forma.get('nombrecompleto.nombre').hasError('minlength') || forma.get('nombrecompleto.nombre').hasError('required')),
         'has-success': forma.get('nombrecompleto.nombre').valid
       }">
       <label class="col-2 col-form-label">Nombre</label>
@@ -16,15 +16,15 @@
                type="text"
                placeholder="Nombre"
                formControlName="nombre">
-        <div *ngIf="forma.get('nombrecompleto.nombre').hasError('required')" class="form-control-feedback">El nombre es requerido</div>
-        <div *ngIf="forma.get('nombrecompleto.nombre').hasError('minlength')" class="form-control-feedback">La cantidad mínima de caracteres es de 3</div>
+        <div *ngIf="forma.get('nombrecompleto.nombre').touched && forma.get('nombrecompleto.nombre').hasError('required')" class="form-control-feedback">El nombre es requerido</div>
+        <div *ngIf="forma.get('nombrecompleto.nombre').touched && forma.get('nombrecompleto.nombre').hasError('minlength')" class="form-control-feedback">La cantidad mínima de caracteres es de 3</div>
       </div>
     </div>
 
     <div 
       class="form-group row"
       [ngClass]="{
-        'has-error': forma.get('nombrecompleto.apellido').hasError('minlength') || forma.get('nombrecompleto.apellido').hasError('required'),
+        'has-error': forma.get('nombrecompleto.apellido').touched && (forma.get('nombrecompleto.apellido').hasError('minlength') || forma.get('nombrecompleto.apellido').hasError('required')),
         'has-success': forma.get('nombrecompleto.apellido').valid
       }">
       <label class="col-2 col-form-label">Apellido</label>
@@ -33,8 +33,8 @@
                type="text"
                placeholder="Apellido"
                formControlName="apellido">
-        <div *ngIf="forma.get('nombrecompleto.apellido').hasError('required')" class="form-control-feedback">El apellido es requerido</div>
-        <div *ngIf="forma.get('nombrecompleto.apellido').hasError('minlength')" class="form-control-feedback">El apellido debe tener al menos 3 caracteres</div>
+        <div *ngIf="forma.get('nombrecompleto.apellido').touched && forma.get('nombrecompleto.apellido').hasError('required')" class="form-control-feedback">El apellido es requerido</div>
+        <div *ngIf="forma.get('nombrecompleto.apellido').touched && forma.get('nombrecompleto.apellido').hasError('minlength')" class="form-control-feedback">El apellido debe tener al menos 3 caracteres</div>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
   <div
     class="form-group row"
     [ngClass]="{
-      'has-error': forma.get('email').hasError('required') || forma.get('email').hasError('pattern'),
+      'has-error': forma.get('email').touched && (forma.get('email').hasError('required') || forma.get('email').hasError('pattern')),
       'has-success': forma.get('email').valid}">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-md-8">
@@ -50,9 +50,42 @@
              type="email"
              placeholder="Correo electrónico"
              formControlName="email">
-             <div *ngIf="forma.get('email').hasError('required')" class="form-control-feedback">El email es requerido</div>
-             <div *ngIf="forma.get('email').hasError('pattern')" class="form-control-feedback">El email no es válido</div>
+             <div *ngIf="forma.get('email').touched && forma.get('email').hasError('required')" class="form-control-feedback">El email es requerido</div>
+             <div *ngIf="forma.get('email').touched && forma.get('email').hasError('pattern')" class="form-control-feedback">El email no es válido</div>
     </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Password</label>
+    <div class="col-md-8">
+      <input  placeholder="Contraseña"
+              type="password"
+              class="form-control"
+              formControlName="password1">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Password</label>
+    <div class="col-md-8">
+      <input  placeholder="Repetir Contraseña"
+              type="password"
+              class="form-control"
+              formControlName="password2">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Pasatiempos</label>
+    <div class="col-md-8" formArrayName="pasatiempos">
+
+      <input  *ngFor="let pasatiempo of forma.controls['pasatiempos'].controls; let i = index"
+              [formControlName]="i"
+              type="text"
+              class="form-control">
+    </div>
+    <button (click)="agregarPasatiempo()" class="btn btn-primary">Agregar</button>
+
   </div>
 
   <div class="form-group row">
@@ -67,4 +100,3 @@
 </form>
 
 {{ forma.valid }}
-{{ forma.get('nombrecompleto.nombre').valid }}
